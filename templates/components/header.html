@@ -1,0 +1,270 @@
+{% load i18n %}
+{% load static %}
+{% url 'solve_test' subject_id variant_id current_exercise_id as st %}
+{% url 'confirm_to_exit' subject_id variant_id request.user.id url as cte %}
+<nav class="navbar navbar-expand-lg bg-primary bg-black" data-bs-theme="dark">
+    <div class="container">
+
+        <div class="container-fluid" style="padding: 0">
+            {#        <a class="navbar-brand" href="#">Navbar</a>#}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        {% url 'home' as home %}
+                        {% if request.path != st and request.path != cte %}
+                            <a style="padding-left: 0" class="nav-link{% if request.path == home %} active{% endif %}"
+                               href="{{ home }}">
+                                {% blocktrans %}Bosh sahifa{% endblocktrans %}
+                            </a>
+                        {% else %}
+                            <a class="nav-link active"
+                               href="{% url 'confirm_to_exit' subject_id variant_id request.user.id 'home' %}">
+                                {% blocktrans %}Bosh sahifa{% endblocktrans %}</a>
+                        {% endif %}
+                    </li>
+                    {% url 'solve_test' as solve_test %}
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            {% if request.path != st and request.path != cte %}
+                                <a class="nav-link{% if request.path == solve_test %} active{% endif %}"
+                                   href="{{ solve_test }}">{% blocktrans %}Test ishlash{% endblocktrans %}</a>
+                            {% else %}
+                                <a class="nav-link active"
+                                   href="{% url 'confirm_to_exit' subject_id variant_id request.user.id 'solve_test' %}">
+                                    {% blocktrans %}Test ishlash{% endblocktrans %}</a>
+                            {% endif %}
+
+                        </li>
+                        <li class="nav-item">
+                            {% url 'show_result' request.user as show_result %}
+                            {% if request.path != st and request.path != cte %}
+                                <a class="nav-link{% if request.path == show_result %} active{% endif %}"
+                                   href="{% url 'show_result' request.user %}">{% blocktrans %}
+                                    Natijalar{% endblocktrans %}</a>
+                            {% else %}
+                                <a class="nav-link active"
+                                   href="{% url 'confirm_to_exit' subject_id variant_id request.user.id 'show_result' %}">
+                                    {% blocktrans %}Natijalar{% endblocktrans %}</a>
+                            {% endif %}
+                        </li>
+                    {% endif %}
+                </ul>
+
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="display: flex; align-items: center">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                style="background: transparent; border:none; display: flex; align-items: center; gap: 2px">
+                            <img src="/media/icon-sun.svg" alt="" class="theme_icon">
+                        </button>
+                        <ul class="dropdown-menu" style="margin-top: 10px">
+                            <li><a data-theme-value="light" onclick="myFunction(event)" class="dropdown-item"
+                                   href="#">{% blocktrans %}Yorug'{% endblocktrans %}</a>
+                            </li>
+                            <hr class="dropdown-divider">
+                            <li><a data-theme-value="dark" onclick="myFunction(event)" class="dropdown-item"
+                                   href="#">{% blocktrans %}Qorong'i{% endblocktrans %}</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {% get_current_language as LANGUAGE_CODE %}
+{#                    {{ LANGUAGE_CODE }}#}
+                    <img width="30px" height="30px" src="{% static '' %}images/flag-{{ LANGUAGE_CODE }}.png" alt="">
+
+                    <form class="change_language_form" action="{% url 'set_language' %}" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}">
+                        <select name="language" onchange="this.form.submit()">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"
+                                        {% if language.code == LANGUAGE_CODE %}selected{% endif %}>
+                                    {{ language.name_local | capfirst }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </form>
+
+                    {% if request.user.is_authenticated %}
+                        {% if request.path != st and request.path != cte %}
+                            {#                        user ava wrapper#}
+                            <div class="d-flex gap-2 d-md-flex justify-content-md-end ms-2">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item dropdown">
+                                        <a style="padding: 0" class="nav-link" href="#" role="button"
+                                           data-bs-toggle="dropdown">
+                                            {% if request.user.is_authenticated %}
+                                                <img src="{{ user.avatar.url }}" alt=""
+                                                     class="user_ava_img">
+                                            {% else %}
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                                     fill="currentColor"
+                                                     class="bi bi-person-circle" viewBox="0 0 16 16">
+                                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                                    <path fill-rule="evenodd"
+                                                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                                </svg>
+                                            {% endif %}
+                                        </a>
+                                        <ul class="dropdown-menu" style="width: 250px;transform: translate(-90%, 10%)">
+                                            {% if request.user.is_authenticated %}
+                                                <li>
+                                                    <div style="max-width: 200px; text-align: justify;overflow-wrap: break-word;margin: 0 auto">
+                                                        <p style="font-size: 20px;"
+                                                           class="text-center">{{ request.user }}</p>
+                                                    </div>
+                                                    <img src="{{ user.avatar.url }}" alt=""
+                                                         class="user_ava_img_2">
+                                                    <div style="max-width: 200px; text-align: justify;overflow-wrap: break-word;margin: 0 auto">
+                                                        <p style="font-size: 15px;"
+                                                           class="text-center">{{ request.user.email }}</p>
+                                                    </div>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li class="text-center"><a class="dropdown-item"
+                                                                           href="{% url 'show_result' request.user %}">
+                                                    {% blocktrans %}Natijalar{% endblocktrans %}</a>
+                                                </li>
+                                                <hr class="dropdown-divider">
+                                                <li class="text-center"><a class="dropdown-item"
+                                                                           href="{% url "profile" request.user.pk %}">
+                                                    {% blocktrans %}Profil{% endblocktrans %}</a>
+                                                </li>
+                                                <hr class="dropdown-divider">
+                                                <li class="text-center"><a class="dropdown-item"
+                                                                           href="{% url "logout" %}">
+                                                    {% blocktrans %}Chiqish{% endblocktrans %}</a></li>
+                                            {% else %}
+                                                <li><a class="dropdown-item" href="{% url "login" %}">{% blocktrans %}
+                                                    Kirish{% endblocktrans %}</a></li>
+                                                <li><a class="dropdown-item" href="{% url "register" %}">
+                                                    {% blocktrans %}Registratsiya{% endblocktrans %}</a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            {#                        user ava wrapper#}
+
+                        {% else %}
+
+
+                            {#                        user ava wrapper#}
+                            <div class="d-flex gap-2 d-md-flex justify-content-md-end ms-2">
+                                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">
+                                            {% if request.user.is_authenticated %}
+                                                <img src="{{ user.avatar.url }}" alt=""
+                                                     class="user_ava_img">
+                                            {% else %}
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                                     fill="currentColor"
+                                                     class="bi bi-person-circle" viewBox="0 0 16 16">
+                                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                                    <path fill-rule="evenodd"
+                                                          d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                                </svg>
+                                            {% endif %}
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            {% if request.user.is_authenticated %}
+                                                <li>
+                                                    <div style="max-width: 200px; text-align: justify;overflow-wrap: break-word;margin: 0 auto">
+                                                        <p style="font-size: 20px;"
+                                                           class="text-center">{{ request.user }}</p>
+                                                    </div>
+                                                    <img src="{{ user.avatar.url }}" alt=""
+                                                         class="user_ava_img_2">
+                                                    <div style="max-width: 200px; text-align: justify;overflow-wrap: break-word;margin: 0 auto">
+                                                        <p style="font-size: 15px;"
+                                                           class="text-center">{{ request.user.email }}</p>
+                                                    </div>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li class="text-center"><a class="dropdown-item"
+                                                                           href="{% url 'confirm_to_exit' subject_id variant_id request.user.id 'show_result' %}">
+                                                    {% blocktrans %}Natijalar{% endblocktrans %}</a>
+                                                </li>
+                                                <hr class="dropdown-divider">
+                                                <li class="text-center"><a class="dropdown-item"
+                                                                           href="{% url 'confirm_to_exit' subject_id variant_id request.user.id "profile" %}">
+                                                    {% blocktrans %}Profil{% endblocktrans %}</a>
+                                                </li>
+                                                <hr class="dropdown-divider">
+                                                <li class="text-center"><a class="dropdown-item"
+                                                                           href="{% url 'confirm_to_exit' subject_id variant_id request.user.id "logout" %}">
+                                                    {% blocktrans %}Chiqish{% endblocktrans %}</a></li>
+
+                                            {% else %}
+
+                                                <li><a class="dropdown-item"
+                                                       href="{% url 'confirm_to_exit' subject_id variant_id request.user.id "login" %}">
+                                                    {% blocktrans %}Kirish{% endblocktrans %}</a></li>
+                                                <li><a class="dropdown-item"
+                                                       href="{% url 'confirm_to_exit' subject_id variant_id request.user.id "register" %}">
+                                                    {% blocktrans %}Registratsiya{% endblocktrans %}</a></li>
+                                            {% endif %}
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            {#                        user ava wrapper#}
+
+                        {% endif %}
+                    {% else %}
+
+                        {#user ava wrapper#}
+                        <div class="d-flex gap-2 d-md-flex justify-content-md-end ms-2">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">
+                                        {% if request.user.is_authenticated %}
+                                            <img src="{{ user.avatar.url }}" alt=""
+                                                 class="user_ava_img">
+                                        {% else %}
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                                 fill="currentColor"
+                                                 class="bi bi-person-circle" viewBox="0 0 16 16">
+                                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                                                <path fill-rule="evenodd"
+                                                      d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                                            </svg>
+                                        {% endif %}
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{% url "login" %}">{% blocktrans %}
+                                            Kirish{% endblocktrans %}</a></li>
+                                        <hr class="dropdown-divider">
+
+                                        <li><a class="dropdown-item" href="{% url "register" %}">
+                                            {% blocktrans %}Registratsiya{% endblocktrans %}</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        {#user ava wrapper#}
+
+                        {#                        <a href="{% url 'login' %}" class="btn btn-light">Kirish</a>#}
+                        {#                        <a href="{% url 'register' %}" class="btn btn-success">Registratsiya</a>#}
+
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</nav>
+
+

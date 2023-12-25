@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+	{% blocktrans %}Tochnami?{% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+    <h1>{% blocktrans %}Hozir chiqib ketilsa natija yomon bo'ladi!{% endblocktrans %}</h1>
+    <a href="{{ pre_url }}">{% blocktrans %}Bekor qilish{% endblocktrans %}</a>
+    <a href="{% url 'absolute_confirm' subject_id variant_id request.user.id url %}">{% blocktrans %}Tasdiqlash{% endblocktrans %}</a>
+{% endblock %}

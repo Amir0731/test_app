@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+    {% blocktrans %}Profil sahifasi{% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+    <div class="profile_datas_container">
+        <div class="profile_datas_box">
+            <div class="avatar_wrap">
+                <div class="action_links_wrapper">
+                    <img onclick="openImgModal()" class="user_ava" src="{{ user.avatar.url }}" alt="avatar">
+                    <div>
+                        <a class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                           href="{% url "edit_profile" object.pk %}">{% blocktrans %}O'zgartirish{% endblocktrans %}</a>
+                        <a class="link-danger link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+                           href="{% url "delete_profile" object.pk %}">{% blocktrans %}O'chirish{% endblocktrans %}</a>
+                    </div>
+                </div>
+                <div class="profile_data">
+                    <p class="profile_info_span">{% blocktrans %}Foydalanuvchi taxallusi{% endblocktrans %}:</p>
+                    <p class="user_profile_info bor_bot">{{ user.username }}</p>
+
+                    <p class="profile_info_span">{% blocktrans %}Ism{% endblocktrans %}:</p>
+                    {% if user.first_name %}
+                        <p class="user_profile_info bor_bot">{{ user.first_name }}</p>
+                    {% else %}
+                        <p class="user_profile_info bor_bot">
+                            user123456789</p>
+                    {% endif %}
+
+                    <p class="profile_info_span">{% blocktrans %}Familiya{% endblocktrans %}:</p>
+                    {% if user.last_name %}
+                        <p class="user_profile_info bor_bot">{{ user.last_name }}</p>
+                    {% else %}
+                        <p class="user_profile_info bor_bot">user987654321</p>
+                    {% endif %}
+
+                    <p class="profile_info_span">{% blocktrans %}Elektron pochta{% endblocktrans %}:</p>
+                    <p class="user_profile_info">{{ user.email }}</p>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="user_completed_subject_box">
+            <p class="user_completed_test_info_text">{% blocktrans %}Topshirgan testlaringiz{% endblocktrans %}:</p>
+            {% if variants %}
+            {% for variant, var in variants.items %}
+                <p class="user_completed_subject_text">{{ variant }}</p>
+                {% for i, x in var.items %}
+                     <a class="result_link" href="{% url 'show_result' user x.subject_id x.subject_variant_id %}">{{ x.sub_variant }}</a>
+                {% endfor %}
+            {% endfor %}
+                {% else %}
+                <h3>Siz holi biron bir testdan o'tmagansiz!</h3>
+            {% endif %}
+        </div>
+    </div>
+
+
+    <div onclick="closeImgModal()" class="model_img">
+     <img src="{{ user.avatar.url }}" alt="avatar">
+    </div>
+{% endblock %}

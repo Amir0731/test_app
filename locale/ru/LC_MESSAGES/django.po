@@ -1,0 +1,425 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-23 22:09+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\config\settings.py:107
+msgid "O'zbekcha"
+msgstr ""
+
+#: .\config\settings.py:108
+msgid "Русский"
+msgstr ""
+
+#: .\config\settings.py:109
+msgid "English"
+msgstr ""
+
+#: .\monitoring\forms.py:37
+msgid "Bunday foydalanuvchi taxallusiga ega foydalanuvchi mavjud."
+msgstr "Пользователь с таким именем уже существует."
+
+#: .\monitoring\forms.py:46 .\monitoring\forms.py:80
+msgid "Foydalanuvchi taxalusi..."
+msgstr "Пользовательская имя..."
+
+#: .\monitoring\forms.py:50 .\monitoring\forms.py:143
+msgid "Ism..."
+msgstr "Имя..."
+
+#: .\monitoring\forms.py:54 .\monitoring\forms.py:144 .\monitoring\forms.py:145
+msgid "Familiya..."
+msgstr "Фамилия..."
+
+#: .\monitoring\forms.py:58 .\monitoring\forms.py:82
+msgid "Parol..."
+msgstr "Пароль..."
+
+#: .\monitoring\forms.py:62
+msgid "Parolni takrorlang..."
+msgstr "Повторите пароль..."
+
+#: .\monitoring\forms.py:67
+msgid "Elektron pochta..."
+msgstr "Электронная почта..."
+
+#: .\monitoring\forms.py:69
+msgid "Parollar bir xil bo'lishi shart!"
+msgstr "Пароли должны быть одинаковыми!"
+
+#: .\monitoring\forms.py:85
+msgid "Login yoki parol xato."
+msgstr ""
+
+#: .\monitoring\models.py:44
+msgid "A variant"
+msgstr "А вариант"
+
+#: .\monitoring\models.py:45
+msgid "B variant"
+msgstr "Б вариант"
+
+#: .\monitoring\models.py:46
+msgid "C variant"
+msgstr "С вариант"
+
+#: .\monitoring\models.py:47
+msgid "D variant"
+msgstr "Д вариант"
+
+#: .\monitoring\views.py:89
+msgid "Savollar holi yo'q."
+msgstr "Вопросов пока нету."
+
+#: .\monitoring\views.py:104
+msgid "Avval ishlagan!"
+msgstr "Вы уже раньше проходили этот тест"
+
+#: .\monitoring\views.py:291
+msgid "Bu variantni ishlamagansan garang!"
+msgstr "Вы еще не прошли тест по этому варианту! "
+
+#: .\templates\components\header.html:22 .\templates\components\header.html:27
+#: .\templates\pages\index.html:5
+msgid "Bosh sahifa"
+msgstr "Главная "
+
+#: .\templates\components\header.html:35 .\templates\components\header.html:39
+msgid "Test ishlash"
+msgstr "Тесты "
+
+#: .\templates\components\header.html:47
+msgid ""
+"\n"
+"                                    Natijalar"
+msgstr ""
+
+#: .\templates\components\header.html:52 .\templates\components\header.html:135
+#: .\templates\components\header.html:196 .\templates\pages\result.html:5
+msgid "Natijalar"
+msgstr "Результаты"
+
+#: .\templates\components\header.html:68
+msgid "Yorug'"
+msgstr "Светлая"
+
+#: .\templates\components\header.html:72
+msgid "Qorong'i"
+msgstr "Тёмная"
+
+#: .\templates\components\header.html:140
+#: .\templates\components\header.html:201
+msgid "Profil"
+msgstr "Профиль"
+
+#: .\templates\components\header.html:145
+#: .\templates\components\header.html:206
+msgid "Chiqish"
+msgstr "Выйти"
+
+#: .\templates\components\header.html:147
+msgid ""
+"\n"
+"                                                    Kirish"
+msgstr ""
+
+#: .\templates\components\header.html:150
+#: .\templates\components\header.html:215
+#: .\templates\components\header.html:250
+#: .\templates\registration\register.html:5
+#: .\templates\registration\register.html:9
+msgid "Registratsiya"
+msgstr "Регистрация "
+
+#: .\templates\components\header.html:212 .\templates\registration\login.html:4
+#: .\templates\registration\login.html:8 .\templates\registration\login.html:21
+msgid "Kirish"
+msgstr "Вход"
+
+#: .\templates\components\header.html:245
+msgid ""
+"\n"
+"                                            Kirish"
+msgstr ""
+
+#: .\templates\pages\choice_subject.html:6
+msgid "Fan"
+msgstr "Предмет"
+
+#: .\templates\pages\choice_subject.html:9
+msgid "Fanni tanlang:"
+msgstr "Выберите предмет:"
+
+#: .\templates\pages\choice_subject_variant.html:6
+#, fuzzy
+#| msgid "A variant"
+msgid "Variant"
+msgstr "А вариант"
+
+#: .\templates\pages\choice_subject_variant.html:11
+msgid "Variant tanlang:"
+msgstr "Выберите вариант:"
+
+#: .\templates\pages\choice_subject_variant.html:16
+msgid "Bu fandan holi variantlar mavjud emas!"
+msgstr "На этом предмете пока нету вариантов!"
+
+#: .\templates\pages\choice_subject_variant.html:17
+#: .\templates\pages\question.html:12
+msgid "Orqaga qaytish"
+msgstr "вернуться"
+
+#: .\templates\pages\delete_profile.html:4
+msgid "Profileni o'chirish"
+msgstr "Удалить профиль "
+
+#: .\templates\pages\delete_profile.html:9
+msgid "Ishonchingiz komilmi?"
+msgstr "Вы уверены?"
+
+#: .\templates\pages\delete_profile.html:13 .\templates\pages\profile.html:18
+msgid "O'chirish"
+msgstr "Удалить "
+
+#: .\templates\pages\delete_profile.html:14 .\templates\pages\tochnami.html:9
+msgid "Bekor qilish"
+msgstr "Отмена"
+
+#: .\templates\pages\edit_profile.html:4 .\templates\pages\edit_profile.html:16
+msgid "Profilni tahrirlash"
+msgstr "Изменить профиль "
+
+#: .\templates\pages\edit_profile.html:50
+msgid "O'zgarishlarni saqlash"
+msgstr "Cохранить изменение"
+
+#: .\templates\pages\edit_profile.html:58
+#: .\templates\registration\password_change_form.html:4
+#: .\templates\registration\password_change_form.html:70
+msgid "Parolni o'zgartirish"
+msgstr "Изменить пароль "
+
+#: .\templates\pages\index.html:13 .\templates\pages\result.html:15
+#: .\templates\pages\result.html:21
+msgid "Salom"
+msgstr "Здратсвуйте"
+
+#: .\templates\pages\index.html:13
+msgid "Kimdir"
+msgstr "Ктото"
+
+#: .\templates\pages\index.html:13
+msgid "Bu yerda qiziqarli narsa yo'q"
+msgstr "Здесь нету нечего интересного"
+
+#: .\templates\pages\message.html:4
+#: .\templates\registration\password_reset_done.html:4
+msgid "Xabar"
+msgstr "Сообщение"
+
+#: .\templates\pages\message.html:11
+msgid "Natijani ko'rish."
+msgstr "Перейти в результат"
+
+#: .\templates\pages\profile.html:5
+msgid "Profil sahifasi"
+msgstr "Профиль "
+
+#: .\templates\pages\profile.html:16
+msgid "O'zgartirish"
+msgstr "Изменить профиль "
+
+#: .\templates\pages\profile.html:22
+msgid "Foydalanuvchi taxallusi"
+msgstr "Пользовательская имя"
+
+#: .\templates\pages\profile.html:25
+msgid "Ism"
+msgstr "Имя"
+
+#: .\templates\pages\profile.html:33
+msgid "Familiya"
+msgstr "Фамилия"
+
+#: .\templates\pages\profile.html:40
+msgid "Elektron pochta"
+msgstr "Электронная почта"
+
+#: .\templates\pages\profile.html:50
+msgid "Topshirgan testlaringiz"
+msgstr "Тесты, которые вы прошли"
+
+#: .\templates\pages\question.html:5
+msgid "Test jarayoni"
+msgstr "Процесс тестирования"
+
+#: .\templates\pages\question.html:21
+msgid "Bu savolga javob berilgan!"
+msgstr "На этот вопрос дан ответ!"
+
+#: .\templates\pages\question.html:29
+#: .\templates\registration\password_reset_form.html:12
+msgid "Yuborish"
+msgstr "Отправить "
+
+#: .\templates\pages\question.html:36 .\templates\pages\question.html:38
+msgid "Avvalgi savol"
+msgstr "Предыдущий вопрос"
+
+#: .\templates\pages\question.html:41 .\templates\pages\question.html:43
+msgid "Keyingi savol"
+msgstr "Следующий вопрос"
+
+#: .\templates\pages\question.html:48
+msgid "savol"
+msgstr "вопрос"
+
+#: .\templates\pages\question.html:49
+msgid "yechilgan"
+msgstr "решено"
+
+#: .\templates\pages\result.html:15
+msgid ""
+"Test ishlangan\n"
+"                fanlar:"
+msgstr "Предметы по которому вы прошли тест:"
+
+#: .\templates\pages\result.html:21
+msgid "Siz holi biron-bir fandan test ishlamangsansiz!"
+msgstr "Вы еще не сдавали ни одного теста"
+
+#: .\templates\pages\result.html:25
+msgid "Ishlagan variantlariz."
+msgstr "Варианты по которому вы сдали тест."
+
+#: .\templates\pages\result.html:32
+msgid "Bu fanda xoli variantlar mavjud emas!"
+msgstr "По этому предмету варианты пока нету!"
+
+#: .\templates\pages\result.html:48
+msgid "Savol"
+msgstr "Вопрос"
+
+#: .\templates\pages\result.html:56
+msgid "Siz tanlagan variant"
+msgstr "Ваш ответ"
+
+#: .\templates\pages\result.html:64
+msgid "To'g'ri variant"
+msgstr "Правильный ответ "
+
+#: .\templates\pages\result.html:72
+msgid "Natija"
+msgstr "Результаты"
+
+#: .\templates\pages\result.html:80
+#, python-format
+msgid "%(question_len)s ta savolga %(ball)s tasiga to'g'ri javob berilgan"
+msgstr "Вы ответели правильно на %(ball)s вопроса из %(question_len)s"
+
+#: .\templates\pages\tochnami.html:4
+msgid "Tochnami?"
+msgstr "Вы уверены?"
+
+#: .\templates\pages\tochnami.html:8
+msgid "Hozir chiqib ketilsa natija yomon bo'ladi!"
+msgstr "Если вы сейчас покините тест это может повлиять на результат!"
+
+#: .\templates\pages\tochnami.html:10
+#: .\templates\registration\password_reset_confirm.html:16
+msgid "Tasdiqlash"
+msgstr "Подтвердить"
+
+#: .\templates\registration\login.html:19
+msgid "Foydalanuvchi taxallusida yoki parolda xato."
+msgstr "Ошибка в Пароле или в Пользовательской имени"
+
+#: .\templates\registration\login.html:22
+#: .\templates\registration\password_reset_form.html:4
+msgid "Parolni unutdim"
+msgstr "Забыл пароль"
+
+#: .\templates\registration\password_change_done.html:4
+msgid "Parol muvaffaqiyatli o'zgardi"
+msgstr "Пароль успешно изменен"
+
+#: .\templates\registration\password_change_done.html:7
+msgid "Parolingiz muvaffaqiyatli o'zgartirildi"
+msgstr "Пароль успешно изменен"
+
+#: .\templates\registration\password_change_done.html:8
+msgid "Bosh sahifaga o'tish"
+msgstr "Перейти на главную страницу"
+
+#: .\templates\registration\password_change_form.html:14
+msgid "Parolni yangilash"
+msgstr "Изменить пароль "
+
+#: .\templates\registration\password_change_form.html:34
+msgid "Avvalgi parol"
+msgstr "Предыдущий пароль "
+
+#: .\templates\registration\password_change_form.html:37
+msgid "Avvalgi parolni kiriting"
+msgstr "Введите предыдущий пароль"
+
+#: .\templates\registration\password_change_form.html:47
+msgid "Yangi parol"
+msgstr "Новый пароль"
+
+#: .\templates\registration\password_change_form.html:50
+msgid "Yangi parolni kiriting"
+msgstr "Введите новый пароль"
+
+#: .\templates\registration\password_change_form.html:60
+msgid "Yangi parolni tasdiqlang"
+msgstr "Подтвердите новый пароль"
+
+#: .\templates\registration\password_change_form.html:63
+msgid "Yangi parolni qayta tasdiqlang"
+msgstr "Подтвердите новый пароль еще раз"
+
+#: .\templates\registration\password_reset_complete.html:4
+msgid "Parol tiklash yakunlandi!"
+msgstr "Сброс пароля успешно завершен!"
+
+#: .\templates\registration\password_reset_complete.html:9
+msgid "Parolni tiklash yakunlandi!"
+msgstr "Сброс пароля успешно завершен!"
+
+#: .\templates\registration\password_reset_complete.html:10
+msgid "Kirish uchun bosing"
+msgstr "Нажмите чтобы войти"
+
+#: .\templates\registration\password_reset_confirm.html:4
+msgid "Parolni tiklash"
+msgstr "Восстановление пароля"
+
+#: .\templates\registration\password_reset_done.html:7
+msgid "Emailni tekshir!"
+msgstr "Проверьте свою электронную почту"
+
+#: .\templates\registration\register.html:18
+msgid "Registratsiyadan o'tish"
+msgstr "Зарегистрироваться "
+
+#, python-format
+#~ msgid "Salom %(user)s! Test ishlangan fanlar:"
+#~ msgstr "Здратсвуйте %(user)a! Предметы по котором вы прошли тест:"

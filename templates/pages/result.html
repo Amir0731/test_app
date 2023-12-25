@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+    {% blocktrans %}Natijalar{% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+    {% url 'show_result' request.user as show_result_1 %}
+    {% url 'show_result' request.user subject.id as show_result_2 %}
+
+
+    {% if request.path == show_result_1 %}
+        {% if subjects %}
+            <h1>{% blocktrans %}Salom{% endblocktrans %} {{ user }}! {% blocktrans %}Test ishlangan
+                fanlar:{% endblocktrans %}</h1>
+            {% for subject in subjects %}
+                <p><a href="{% url 'show_result' request.user subject.subject_id %}">{{ subject.subject_name }}</a></p>
+            {% endfor %}
+        {% else %}
+            <h1>{% blocktrans %}Salom{% endblocktrans %} {{ user }}! {% blocktrans %}Siz holi biron-bir fandan test ishlamangsansiz!{% endblocktrans %}</h1>
+        {% endif %}
+    {% elif request.path == show_result_2 %}
+        {% if has_variant %}
+            <h1>{% blocktrans %}Ishlagan variantlariz.{% endblocktrans %}</h1>
+            {% for subject_variant in subject_variants %}
+                <p>
+                    <a href="{% url 'show_result' request.user subject_variant.subject_id subject_variant.subject_variant_id %}">{{ subject_variant.sub_variant }}</a>
+                </p>
+            {% endfor %}
+        {% else %}
+            <h1>{% blocktrans %}Bu fanda xoli variantlar mavjud emas!{% endblocktrans %}</h1>
+        {% endif %}
+    {% else %}
+
+        <div class="main_result_container">
+            <h1>{{ sub_var }}</h1>
+            <div class="user_info_table">
+                <div class="son_box">
+                    <h5>N</h5>
+                    {% for inf in info %}
+                        <div class="exercise_text_box {% if inf.is_true == '✕' %}xato{% else %}tugri{% endif %}">
+                            <p>{{ inf.son }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="savol_box box">
+                    <h5>{% blocktrans %}Savol{% endblocktrans %}</h5>
+                    {% for inf in info %}
+                        <div class="exercise_text_box {% if inf.is_true == '✕' %}xato{% else %}tugri{% endif %}">
+                            <p class="info-text">{{ inf.exer_text }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="user_choice_box box">
+                    <h5>{% blocktrans %}Siz tanlagan variant{% endblocktrans %}</h5>
+                    {% for inf in info %}
+                        <div class="user_selected_var_box {% if inf.is_true == '✕' %}xato{% else %}tugri{% endif %}">
+                            <p class="info-text">{{ inf.selected_var }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="true_var_box box">
+                    <h5>{% blocktrans %}To'g'ri variant{% endblocktrans %}</h5>
+                    {% for inf in info %}
+                        <div class="exer_true_var_box {% if inf.is_true == '✕' %}xato{% else %}tugri{% endif %}">
+                            <p class="info-text">{{ inf.true_variant }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="choice_info_box box">
+                    <h5>{% blocktrans %}Natija{% endblocktrans %}</h5>
+                    {% for inf in info %}
+                        <div class="user_choice_info {% if inf.is_true == '✕' %}xato{% else %}tugri{% endif %}">
+                            <p class="info-text">{{ inf.is_true }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <h1>{% blocktrans %}{{ question_len }} ta savolga {{ ball }} tasiga to'g'ri javob berilgan{% endblocktrans %}</h1>
+            <h3 class="{% if foiz > 85 %}chotki{% elif foiz < 85 and foiz > 75 %}yaxshi{% elif foiz < 75 and foiz > 65 %}yomon{% else %}gg{% endif %}foiz">{{ foiz }}%</h3>
+        </div>
+
+    {% endif %}
+{% endblock %}
+

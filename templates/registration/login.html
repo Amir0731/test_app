@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+    {% blocktrans %}Kirish{% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="form-content my-3 p-3">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <div class="card shadow-lg border-0 rounded-lg mt-0 mb-3">
+
+                        <div class="card-header justify-content-center">
+                            <h2 class="font-weight-light my-4 text-center">{% blocktrans %}Kirish{% endblocktrans %}</h2>
+                        </div>
+
+                        {% if form.errors %}
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <div id="form_errors">
+                                    {% for key, value in form.errors.items %}
+                                        <strong>{{ value }}</strong>
+                                    {% endfor %}
+                                </div>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                                </button>
+                            </div>
+                        {% endif %}
+
+                        <div class="card-body">
+                            <form style="display: flex; flex-direction: column" action="{% url 'login' %}" method="post">
+                                {% csrf_token %}
+                                {% for f in form %}
+                                    <div>
+                                        <div class="form-row">
+                                            <div class="col-md-10 offset-md-1">
+                                                <div class="form-group">
+                                                    <p class="small mb-1">{{ f.label }}:</p>
+                                                    <div style="margin-bottom: 15px">{{ f }}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                <div class="form-row">
+                                    <div class="col-md-10 offset-md-1">
+                                        <div class="form-group mt-0 mb-1">
+                                            <button type="submit" class="col-md-12 btn btn-outline-info" id="reset">
+                                                {% blocktrans %}Kirish{% endblocktrans %}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row" style="display: flex; justify-content: center">
+                                    <div style="display: flex; justify-content: end" class="col-md-10 offset-md-1">
+                                        <div style="margin: 0" class="form-group mt-0 mb-1">
+                                            <a style="align-self: end" href="{% url 'password_reset' %}">
+                                                {% blocktrans %}Parolni unutdim{% endblocktrans %}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Variant yaratish
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Variant yaratish:</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ variant_form.as_p }}
+
+            {{ formset.management_form }}
+
+            {% for form in formset %}
+                {{ form.as_div }}
+            {% endfor %}
+            <button type="submit">Saqlash</button>
+        </form>
+    </div>
+{% endblock %}

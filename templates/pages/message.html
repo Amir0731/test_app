@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+	{% blocktrans %}Xabar{% endblocktrans %}
+{% endblock %}
+
+
+{% block content %}
+	<h1>{{ message }}</h1>
+    {% if not natijani_kurish %}
+    <a href="{% url 'show_result' request.user subject_id subject_var_id %}">{% blocktrans %}Natijani ko'rish.{% endblocktrans %}</a>
+    {% endif %}
+{% endblock %}

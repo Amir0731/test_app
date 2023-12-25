@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+    {% blocktrans %}Test jarayoni{% endblocktrans %}
+{% endblock %}
+
+
+{% block content %}
+    {% if message %}
+    <h1>{{ message }}</h1>
+        <a href="{{ return_back }}">{% blocktrans %}Orqaga qaytish{% endblocktrans %}</a>
+        {% else %}
+    <h1 class="text-center">{{ variant }}</h1>
+    <h3>{{ exercise.question }}</h3>
+    <br>
+    {% if exercise.is_completed %}
+        {% for v in exercise.variants.values %}
+            <p>{{ v.option }}) {{ v.text }}</p>
+        {% endfor %}
+        <h3>{% blocktrans %}Bu savolga javob berilgan!{% endblocktrans %}</h3>
+    {% else %}
+        <form action="{% url 'test' subject_id variant_id exercise.exercise_id %}" method="post">
+            {% csrf_token %}
+            {% for v in exercise.variants.values %}
+                <input type="radio" name="option" id="{{ v.id }}" value="{{ v.id }}" required="required">
+                <label for="{{ v.id }}"><p>{{ v.option }}) {{ v.text }}</p></label><br>
+            {% endfor %}
+            <button type="submit">{% blocktrans %}Yuborish{% endblocktrans %}</button>
+        </form>
+    {% endif %}
+    <br>
+    <br>
+    <br>
+    {% if current_exercise_id > 1 %}
+        <a class="link-opacity-50-hover" href="{% url 'solve_test' subject.id variant_id current_exercise_id|add:'-1' %}">{% blocktrans %}Avvalgi savol{% endblocktrans %}</a>
+    {% else %}
+        <a class="link-opacity-50-hover" href="{% url 'solve_test' subject.id variant_id current_exercise_id %}">{% blocktrans %}Avvalgi savol{% endblocktrans %}</a>
+    {% endif %}
+    {% if current_exercise_id < exercise_len %}
+        <a class="link-opacity-50-hover" href="{% url 'solve_test' subject.id variant_id current_exercise_id|add:'1' %}">{% blocktrans %}Keyingi savol{% endblocktrans %}</a>
+    {% else %}
+        <a class="link-opacity-50-hover" href="{% url 'solve_test' subject.id variant_id current_exercise_id %}">{% blocktrans %}Keyingi savol{% endblocktrans %}</a>
+    {% endif %}
+    <br>
+    <br>
+    <br>
+    <h6 class="text-center">{% blocktrans %}savol{% endblocktrans %}:{{ current_exercise_id }}/{{ exercise_len }}</h6>
+    <h6 class="text-center">{% blocktrans %}yechilgan{% endblocktrans %}:{{ completed_len }}/{{ exercise_len }}</h6>
+    {% endif %}
+
+{% endblock %}

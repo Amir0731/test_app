@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+
+{% block title %}
+	{% blocktrans %}Variant{% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+    {% if variants %}
+    <h2>{% blocktrans %}Variant tanlang:{% endblocktrans %}</h2>
+    {% for variant in variants %}
+        <p><a class="link-opacity-50-hover" href="{% url 'create_main_info' subject.id variant.id  %}">{{ variant }}</a></p>
+    {% endfor %}
+        {% else %}
+        <h1>{% blocktrans %}Bu fandan holi variantlar mavjud emas!{% endblocktrans %}</h1>
+            <a href="{{ return_back }}">{% blocktrans %}Orqaga qaytish{% endblocktrans %}</a>
+    {% endif %}
+{% endblock %}

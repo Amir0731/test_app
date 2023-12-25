@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+{% block title %}
+    {% blocktrans %}Bosh sahifa{% endblocktrans %}
+{% endblock %}
+
+{% block content %}
+    <form action="">
+    {% csrf_token %}
+    {{ form }}
+    </form>
+    <h4>{% blocktrans %}Salom{% endblocktrans %} {% if request.user.is_authenticated %}{{ request.user }}{% else %}{% blocktrans %}Kimdir{% endblocktrans %}{% endif %}. {% blocktrans %}Bu yerda qiziqarli narsa yo'q{% endblocktrans %}.</h4>
+{% endblock %}

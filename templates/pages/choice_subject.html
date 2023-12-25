@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load i18n %}
+
+
+{% block title %}
+	{% blocktrans %}Fan{% endblocktrans %}
+{% endblock %}
+{% block content %}
+	<h3>{% blocktrans %}Fanni tanlang:{% endblocktrans %}</h3>
+    {% for subject in subjects %}
+        <p><a class="link-opacity-50-hover" href="{% url 'solve_test' subject.id %}">{{ subject.name }}</a></p>
+    {% endfor %}
+{% endblock %}
